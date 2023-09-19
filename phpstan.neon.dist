@@ -1,0 +1,7 @@
+includes:
+    - vendor/mindkomm/qa/phpstan.neon.dist
+parameters:
+    level: 5
+    paths:
+        - lib
+        - autoload.php
