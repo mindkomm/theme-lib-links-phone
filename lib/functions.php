@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Formats phone number for screenreaders.
  *
@@ -26,17 +28,18 @@
  *
  * @return string Formatted telephone number for accessibility.
  */
-function phone_accessible( $phone_number ) {
-	// Remove unwanted characters
-	$phone_number = preg_replace( '/[^\d\s]/', '', $phone_number );
+function phone_accessible($phone_number)
+{
+    // Remove unwanted characters
+    $phone_number = preg_replace('/[^\d\s]/', '', $phone_number);
 
-	// Replace all whitespaces with dots
-	$phone_number = preg_replace( '/\s/', '.', $phone_number );
+    // Replace all whitespaces with dots
+    $phone_number = preg_replace('/\s/', '.', $phone_number);
 
-	// Place a space after each of the digits, but not the ones followed by a dot
-	$phone_number = preg_replace( '/\d(?!\.)|\./', '${0} ', $phone_number );
+    // Place a space after each of the digits, but not the ones followed by a dot
+    $phone_number = preg_replace('/\d(?!\.)|\./', '${0} ', $phone_number);
 
-	return trim( $phone_number );
+    return trim($phone_number);
 }
 
 /**
@@ -55,14 +58,15 @@ function phone_accessible( $phone_number ) {
  *
  * @return string Formatted telephone number.
  */
-function phone_raw( $phone_number ) {
-	// Turn '+' into '00'
-	$phone_number = preg_replace( '/\+/', '00', $phone_number );
+function phone_raw($phone_number)
+{
+    // Turn '+' into '00'
+    $phone_number = preg_replace('/\+/', '00', $phone_number);
 
-	// Remove all non-digits
-	$phone_number = preg_replace( '/\D/', '', $phone_number );
+    // Remove all non-digits
+    $phone_number = preg_replace('/\D/', '', $phone_number);
 
-	return $phone_number;
+    return $phone_number;
 }
 
 /**
@@ -88,8 +92,10 @@ function phone_raw( $phone_number ) {
  *
  * @return string HTML attribute string.
  */
-function get_phone_link_attributes( $phone_number ) {
-	$phone_number = phone_raw( $phone_number );
+function get_phone_link_attributes($phone_number)
+{
 
-	return 'href="tel:' . $phone_number . '" rel="nofollow"';
+    $phone_number = phone_raw($phone_number);
+
+    return 'href="tel:' . $phone_number . '" rel="nofollow"';
 }

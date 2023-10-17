@@ -1,31 +1,33 @@
 <?php
 
-use Timber\Twig_Function as Timber_Twig_Function;
+declare(strict_types=1);
 
 /**
- * Customize Twig
- *
- * @param Twig_Environment $twig
- * @return $twig
+ * Add Twig functions.
  */
-add_filter( 'timber/twig', function( \Twig_Environment $twig ) {
-	/**
-	 * Get phone number wrapped in proper HTML attributes.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @see get_phone_link_attributes()
-	 */
-	$twig->addFunction( new Timber_Twig_Function( 'get_phone_link_attributes', 'get_phone_link_attributes' ) );
 
-	/**
-	 * Format phone number for screenreaders.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @see phone_accessible()
-	 */
-	$twig->addFunction( new Timber_Twig_Function( 'phone_accessible', 'phone_accessible' ) );
+add_filter('timber/twig/functions', static function (array $functions): array {
+    /**
+     * Get phone number wrapped in proper HTML attributes.
+     *
+     * @since 1.0.0
+     *
+     * @see get_phone_link_attributes()
+     */
+    $functions['get_phone_link_attributes'] = [
+        'callable' => 'get_phone_link_attributes',
+    ];
 
-	return $twig;
+    /**
+     * Format phone number for screenreaders.
+     *
+     * @since 1.0.0
+     *
+     * @see phone_accessible()
+     */
+    $functions['phone_accessible'] = [
+        'callable' => 'phone_accessible',
+    ];
+
+    return $functions;
 });
