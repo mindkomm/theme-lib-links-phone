@@ -1,16 +1,8 @@
 {
     "name": "mindkomm/theme-lib-links-phone",
-    "type": "library",
     "description": "Collection of phone link helper functions for WordPress themes",
     "license": "MIT",
-    "require": {
-        "php": ">=7.0.0"
-    },
-    "autoload": {
-        "files": [
-            "autoload.php"
-        ]
-    },
+    "type": "library",
     "authors": [
         {
             "name": "Lukas Gaechter",
@@ -18,9 +10,47 @@
             "homepage": "https://www.mind.ch"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "require": {
+        "php": ">=7.0.0"
+    },
     "require-dev": {
         "mindkomm/qa": "^0.4.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "files": [
+            "autoload.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "ergebnis/composer-normalize": true
+        }
+    },
+    "extra": {
+        "grumphp": {
+            "config-default-path": "vendor/mindkomm/qa/config/grumphp.yml"
+        }
+    },
+    "scripts": {
+        "analyse": [
+            "phpstan analyse --memory-limit=1G"
+        ],
+        "cs": "phpcs --colors",
+        "cs:fix": "phpcbf --filter=GitModified",
+        "grump": [
+            "grumphp git:pre-commit"
+        ],
+        "lint-composer": "@composer normalize --dry-run",
+        "lint-composer:fix": "@composer normalize",
+        "qa": [
+            "@lint-composer",
+            "@cs",
+            "@analyse"
+        ]
     }
 }
