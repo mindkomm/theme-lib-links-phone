@@ -4,12 +4,12 @@
     "description": "Collection of phone link helper functions for WordPress themes",
     "license": "MIT",
     "require": {
-      "php": ">=7.0.0"
+        "php": ">=7.0.0"
     },
     "autoload": {
-      "files": [
-        "autoload.php"
-      ]
+        "files": [
+            "autoload.php"
+        ]
     },
     "authors": [
         {
@@ -17,5 +17,10 @@
             "email": "lukas.gaechter@mind.ch",
             "homepage": "https://www.mind.ch"
         }
-    ]
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "mindkomm/qa": "^0.4.1"
+    }
 }
